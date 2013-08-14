@@ -70,7 +70,7 @@ def page_index_factory(language_code, proxy_model):
         def get_model(self):
             return proxy_model
 
-        def index_queryset(self):
+        def index_queryset(self, **kwargs):
             qs = proxy_model.objects.published().filter(title_set__language=language_code).distinct()
             if 'publisher' in settings.INSTALLED_APPS:
                 qs = qs.filter(publisher_is_draft=True)
